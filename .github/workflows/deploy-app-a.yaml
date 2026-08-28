@@ -1,0 +1,17 @@
+name: Deploy App A
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/app-a/**"
+      - "shared/**"
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deploy-shared.yaml
+    with:
+      app_name: app-a
+      working_directory: apps/app-a
+      environment: playground

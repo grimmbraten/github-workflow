@@ -1,0 +1,29 @@
+name: Shared Deploy
+
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        required: true
+        type: string
+
+      working_directory:
+        required: true
+        type: string
+
+      environment:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy (mock)
+        run: |
+          echo "App Name: ${{ inputs.app_name }}"
+          echo "Working Directory: ${{ inputs.working_directory }}"
+          echo "Environment: ${{ inputs.environment }}"
