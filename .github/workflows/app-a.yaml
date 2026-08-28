@@ -18,14 +18,14 @@ on:
 jobs:
   test:
     if: github.event_name == 'pull_request'
-    uses: ./.github/workflows/reusable/test.yaml
+    uses: ./.github/workflows/test.yaml
     with:
       app_name: app-a
       working_directory: apps/app-a
 
   deploy:
     if: github.event_name == 'push'
-    uses: ./.github/workflows/reusable/deploy.yaml
+    uses: ./.github/workflows/deploy.yaml
     with:
       app_name: app-a
       working_directory: apps/app-a
