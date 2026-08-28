@@ -1,0 +1,31 @@
+name: App A Dispatcher
+
+# This workflow handles dispatch events for App A, triggering test and deploy jobs based on pull requests and pushes to the main branch.
+
+on:
+  pull_request:
+    paths:
+      - "apps/app-a/**"
+      - "shared/**"
+
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/app-a/**"
+      - "shared/**"
+
+jobs:
+  test:
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/reusable/test.yaml
+    with:
+      app_name: app-a
+      working_directory: apps/app-a
+
+  deploy:
+    if: github.event_name == 'push'
+    uses: ./.github/workflows/reusable/deploy.yaml
+    with:
+      app_name: app-a
+      working_directory: apps/app-a
